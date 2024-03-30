@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class HomeController extends GetxController {
+  final RxInt selectedIndex = 0.obs;
+
+  final List<Widget> _tabContents = [];
+
+  HomeController() {
+    _tabContents.addAll([
+      Container(color: Colors.red),
+      Container(color: Colors.green),
+      Container(color: Colors.blue),
+      Container(color: Colors.yellow),
+    ]);
+  }
+
+  get tabContent => _tabContents[selectedIndex.value];
+
+  void changeTab(int index) {
+    selectedIndex.value = index;
+    update();
+  }
+}
