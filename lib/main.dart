@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_urban_planner/core/theme/app_theme.dart';
 import 'package:smart_urban_planner/routes/route.dart';
 import 'package:smart_urban_planner/routes/route_names.dart';
 
@@ -15,10 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Smart Urban Planner',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
+      theme: AppTheme().theme,
       getPages: route,
       initialRoute: RouteNames.home,
     );
