@@ -46,9 +46,24 @@ class HomeView extends StatelessWidget {
                 0, 'Explore', Iconsax.map_bold, Iconsax.map_1_outline),
             _buildNavItem(
                 1, 'Feed', Iconsax.element_4_bold, Iconsax.element_4_outline),
-            _buildNavItem(2, 'Inbox', Iconsax.direct_notification_bold,
+            BottomNavigationBarItem(
+              icon: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Styles.foregroundColor,
+                ),
+                child: Icon(
+                  Iconsax.add_outline,
+                  size: 28,
+                  color: Styles.secondaryBackgroundColor,
+                ),
+              ),
+              label: '',
+            ),
+            _buildNavItem(3, 'Inbox', Iconsax.direct_notification_bold,
                 Iconsax.direct_notification_outline),
-            _buildNavItem(3, 'Profile', Iconsax.profile_circle_bold,
+            _buildNavItem(4, 'Profile', Iconsax.profile_circle_bold,
                 Iconsax.profile_circle_outline),
           ],
         ),
