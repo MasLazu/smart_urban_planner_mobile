@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_urban_planner/core/theme/styles.dart';
 import 'package:smart_urban_planner/modules/explore/view.dart';
 import 'package:smart_urban_planner/modules/profile/view.dart';
 
@@ -11,8 +12,8 @@ class HomeController extends GetxController {
   HomeController() {
     _tabContents.addAll([
       ExploreView(),
-      Container(color: Colors.green),
-      Container(color: Colors.blue),
+      Container(color: Styles.backgroundColor),
+      Container(color: Styles.backgroundColor),
       const ProfileView(),
     ]);
   }
@@ -21,6 +22,5 @@ class HomeController extends GetxController {
 
   void changeTab(int index) {
     selectedIndex.value = index;
-    update();
   }
 }

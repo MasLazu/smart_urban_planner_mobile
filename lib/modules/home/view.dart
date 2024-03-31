@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
       body: Obx(() => _controller.tabContent),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
-          elevation: 0,
+          elevation: 3,
           type: BottomNavigationBarType.fixed,
           currentIndex: _controller.selectedIndex.value,
           selectedItemColor: Styles.primaryColor,

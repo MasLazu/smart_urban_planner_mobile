@@ -9,33 +9,33 @@ class AppTheme {
           background: Styles.backgroundColor,
         ),
         useMaterial3: true,
-        fontFamily: GoogleFonts.inter().fontFamily,
+        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
         textTheme: TextTheme(
-          displayLarge: GoogleFonts.inter(
+          displayLarge: GoogleFonts.plusJakartaSans(
               fontSize: 56, fontWeight: FontWeight.bold, letterSpacing: -1.5),
-          displayMedium: GoogleFonts.inter(
+          displayMedium: GoogleFonts.plusJakartaSans(
               fontSize: 42, fontWeight: FontWeight.bold, letterSpacing: -0.5),
-          displaySmall:
-              GoogleFonts.inter(fontSize: 36, fontWeight: FontWeight.bold),
-          headlineMedium: GoogleFonts.inter(
+          displaySmall: GoogleFonts.plusJakartaSans(
+              fontSize: 36, fontWeight: FontWeight.bold),
+          headlineMedium: GoogleFonts.plusJakartaSans(
               fontSize: 34, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-          headlineSmall:
-              GoogleFonts.inter(fontSize: 24, fontWeight: FontWeight.w400),
-          titleLarge: GoogleFonts.inter(
+          headlineSmall: GoogleFonts.plusJakartaSans(
+              fontSize: 24, fontWeight: FontWeight.w400),
+          titleLarge: GoogleFonts.plusJakartaSans(
               fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.15),
-          titleMedium: GoogleFonts.inter(
+          titleMedium: GoogleFonts.plusJakartaSans(
               fontSize: 16, fontWeight: FontWeight.w600, letterSpacing: 0.15),
-          titleSmall: GoogleFonts.inter(
+          titleSmall: GoogleFonts.plusJakartaSans(
               fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.1),
-          bodyLarge: GoogleFonts.inter(
+          bodyLarge: GoogleFonts.plusJakartaSans(
               fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-          bodyMedium: GoogleFonts.inter(
+          bodyMedium: GoogleFonts.plusJakartaSans(
               fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-          labelLarge: GoogleFonts.inter(
+          labelLarge: GoogleFonts.plusJakartaSans(
               fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-          bodySmall: GoogleFonts.inter(
+          bodySmall: GoogleFonts.plusJakartaSans(
               fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-          labelSmall: GoogleFonts.inter(
+          labelSmall: GoogleFonts.plusJakartaSans(
               fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
         ).apply(
           displayColor: Styles.foregroundColor,
