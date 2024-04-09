@@ -38,7 +38,7 @@ class DetailReportView extends StatelessWidget {
                 width: double.infinity,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(report.images[0], fit: BoxFit.cover),
+                  child: Image.network(report.image, fit: BoxFit.cover),
                 ),
               ),
               const SizedBox(height: 8),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class InboxView extends StatelessWidget {
+  const InboxView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class ProfileView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Login to see your profile',
+              'Login to see your ibox',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),

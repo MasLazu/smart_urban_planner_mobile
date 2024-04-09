@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 class Report {
   final String id;
   final String title;
   final String description;
-  final List<String> images;
+  final String image;
   final DateTime createdAt;
   final String location;
   final int popularity;
@@ -17,7 +15,7 @@ class Report {
     required this.id,
     required this.title,
     required this.description,
-    required this.images,
+    required this.image,
     required this.createdAt,
     required this.location,
     required this.popularity,
@@ -29,7 +27,7 @@ class Report {
     String? id,
     String? title,
     String? description,
-    List<String>? images,
+    String? image,
     DateTime? createdAt,
     String? location,
     int? popularity,
@@ -40,7 +38,7 @@ class Report {
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
-      images: images ?? this.images,
+      image: image ?? this.image,
       createdAt: createdAt ?? this.createdAt,
       location: location ?? this.location,
       popularity: popularity ?? this.popularity,
@@ -54,7 +52,7 @@ class Report {
       'id': id,
       'title': title,
       'description': description,
-      'images': images,
+      'image': image,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'location': location,
       'popularity': popularity,
@@ -68,7 +66,7 @@ class Report {
       id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
-      images: List<String>.from((map['images'] as List<String>)),
+      image: map['image'] as String,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       location: map['location'] as String,
       popularity: map['popularity'] as int,
@@ -84,7 +82,7 @@ class Report {
 
   @override
   String toString() {
-    return 'Report(id: $id, title: $title, description: $description, images: $images, createdAt: $createdAt, location: $location, popularity: $popularity, latitude: $latitude, longitude: $longitude)';
+    return 'Report(id: $id, title: $title, description: $description, image: $image, createdAt: $createdAt, location: $location, popularity: $popularity, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -94,7 +92,7 @@ class Report {
     return other.id == id &&
         other.title == title &&
         other.description == description &&
-        listEquals(other.images, images) &&
+        other.image == image &&
         other.createdAt == createdAt &&
         other.location == location &&
         other.popularity == popularity &&
@@ -107,7 +105,7 @@ class Report {
     return id.hashCode ^
         title.hashCode ^
         description.hashCode ^
-        images.hashCode ^
+        image.hashCode ^
         createdAt.hashCode ^
         location.hashCode ^
         popularity.hashCode ^

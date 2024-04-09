@@ -1,35 +1,20 @@
-import 'package:camera/camera.dart';
+import 'dart:io';
+
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class CreateReportController extends GetxController {
-  final Rx<CameraController?> _cameraController = Rx<CameraController?>(null);
+  final File image;
 
-  Future<void> _initializeCamera() async {
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
+  final _formKey = GlobalKey<FormState>();
 
-    final cameraController = CameraController(
-      firstCamera,
-      ResolutionPreset.medium,
-    );
-    await cameraController.initialize();
-    _cameraController.value = cameraController;
-  }
+  CreateReportController({required this.image});
 
-  get cameraController => _cameraController.value;
+  GlobalKey<FormState> get formKey => _formKey;
 
-  @override
-  void onInit() async {
-    super.onInit();
-    await Permission.camera.request();
-    if (await Permission.camera.isDenied) Get.back();
-    await _initializeCamera();
-  }
-
-  @override
-  void dispose() {
-    _cameraController.value?.dispose();
-    super.dispose();
+  void submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
   }
 }

@@ -50,7 +50,7 @@ class ExploreView extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
-                            selected.images[0],
+                            selected.image,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -120,18 +120,28 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cameraPosition = _controller.getinitialCameraPosition();
     return Stack(
       children: [
-        GoogleMap(
-          zoomControlsEnabled: false,
-          mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(
-            target: _controller.initialCameraPosition,
-            zoom: 16,
-          ),
-          onMapCreated: _controller.onMapCreated,
-          markers: _controller.markers,
-        ),
+        FutureBuilder(
+            future: cameraPosition,
+            builder: (contenxt, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.hasData) {
+                return GoogleMap(
+                  zoomControlsEnabled: false,
+                  mapType: MapType.normal,
+                  initialCameraPosition: CameraPosition(
+                    target: snapshot.data!,
+                    zoom: 16,
+                  ),
+                  onMapCreated: _controller.onMapCreated,
+                  markers: _controller.markers,
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            }),
         Obx(() => _buildMarkerCard()),
       ],
     );

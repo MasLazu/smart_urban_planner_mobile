@@ -45,7 +45,7 @@ class ReportCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  report.images[0],
+                  report.image,
                   height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,
