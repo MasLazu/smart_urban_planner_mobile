@@ -5,9 +5,11 @@ class FormInput extends TextFormField {
     super.key,
     required String hintText,
     required bool isPassword,
+    required TextEditingController controller,
     required super.validator,
   }) : super(
           obscureText: isPassword,
+          controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             floatingLabelBehavior: FloatingLabelBehavior.never,

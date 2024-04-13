@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
+import 'package:smart_urban_planner/data/models/user.dart';
+import 'package:smart_urban_planner/modules/register/controller.dart';
 import 'package:smart_urban_planner/widgets/form_input.dart';
 
 class RegisterView extends StatelessWidget {
-  const RegisterView({super.key});
+  RegisterView({super.key});
+
+  final _controller = Get.find<RegisterController>();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Form(
-            key: formKey,
+            key: _controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -38,6 +40,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
+                  controller: _controller.nameController,
                   hintText: 'Enter your name',
                   isPassword: false,
                   validator: (value) {
@@ -54,6 +57,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
+                  controller: _controller.emailController,
                   hintText: 'Enter your email address',
                   isPassword: false,
                   validator: (value) {
@@ -70,8 +74,9 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
+                  controller: _controller.passwordController,
                   hintText: 'Enter your password',
-                  isPassword: false,
+                  isPassword: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password is required';
@@ -81,9 +86,21 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 42),
                 ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.snackbar("yole", "yole");
+                  onPressed: () async {
+                    if (_controller.formKey.currentState!.validate()) {
+                      try {
+                        await _controller.authRepository.register(
+                          User(
+                            email: _controller.emailController.text,
+                            password: _controller.passwordController.text,
+                            name: _controller.nameController.text,
+                          ),
+                        );
+                        Get.snackbar("Success", "Account created successfully");
+                        Get.offAllNamed('/login');
+                      } catch (e) {
+                        Get.snackbar("Error", e.toString());
+                      }
                     }
                   },
                   style: ButtonStyle(

@@ -4,7 +4,10 @@ import 'package:smart_urban_planner/core/theme/styles.dart';
 import 'package:smart_urban_planner/widgets/form_input.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  LoginView({super.key});
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
+                  controller: emailController,
                   hintText: 'Enter your email address',
                   isPassword: false,
                   validator: (value) {
@@ -54,8 +58,9 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
+                  controller: passwordController,
                   hintText: 'Enter your password',
-                  isPassword: false,
+                  isPassword: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password is required';

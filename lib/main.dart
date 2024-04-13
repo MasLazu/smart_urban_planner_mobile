@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/core/theme/app_theme.dart';
+import 'package:smart_urban_planner/data/repositories/auth_repository.dart';
+import 'package:smart_urban_planner/data/repositories/report_repository.dart';
 import 'package:smart_urban_planner/routes/route.dart';
 import 'package:smart_urban_planner/routes/route_names.dart';
 
 void main() {
+  Get.put(AuthRepository());
+  Get.put(ReportRepository());
   runApp(const MyApp());
 }
 
