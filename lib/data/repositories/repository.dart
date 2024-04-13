@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'dart:convert';
 
+import 'package:get_storage/get_storage.dart';
+import 'package:smart_urban_planner/core/storage_keys.dart';
+
 class Repository extends GetConnect {
   Repository(String domain) {
     httpClient.baseUrl = domain;
@@ -20,12 +23,23 @@ class Repository extends GetConnect {
     });
   }
 
-  checkStatusCode(Response res) {
+  String get token => GetStorage().read(StorageKeys.token) ?? '';
+
+  void checkStatusCode(Response res) {
     if (res.statusCode == null ||
         res.statusCode! < 200 ||
         res.statusCode! >= 300) {
       throw Exception(res.body['message']);
     }
+  }
+
+  Map<String, String> assignToken(Map<String, String>? headers) {
+    if (headers != null) {
+      headers['Authorization'] = token;
+    } else {
+      headers = {'Authorization': token};
+    }
+    return headers;
   }
 
   @override
@@ -38,6 +52,7 @@ class Repository extends GetConnect {
     Decoder<T>? decoder,
     Progress? uploadProgress,
   }) async {
+    headers = assignToken(headers);
     Response<T> res = await super.post(
       url,
       body,
@@ -59,6 +74,7 @@ class Repository extends GetConnect {
     Map<String, dynamic>? query,
     Decoder<T>? decoder,
   }) async {
+    headers = assignToken(headers);
     Response<T> res = await super.get(
       url,
       headers: headers,
@@ -80,6 +96,7 @@ class Repository extends GetConnect {
     Decoder<T>? decoder,
     Progress? uploadProgress,
   }) async {
+    headers = assignToken(headers);
     Response<T> res = await super.put(
       url,
       body,
@@ -101,6 +118,7 @@ class Repository extends GetConnect {
     Map<String, dynamic>? query,
     Decoder<T>? decoder,
   }) async {
+    headers = assignToken(headers);
     Response<T> res = await super.delete(
       url,
       headers: headers,
@@ -122,6 +140,7 @@ class Repository extends GetConnect {
     Decoder<T>? decoder,
     Progress? uploadProgress,
   }) async {
+    headers = assignToken(headers);
     Response<T> res = await super.patch(
       url,
       body,

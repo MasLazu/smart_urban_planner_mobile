@@ -4,13 +4,13 @@ class User {
   final String? id;
   final String? name;
   final String email;
-  final String password;
+  final String? password;
 
   User({
     this.id,
     this.name,
     required this.email,
-    required this.password,
+    this.password,
   });
 
   User copyWith({
@@ -41,7 +41,7 @@ class User {
       id: map['id'] != null ? map['id'] as String : null,
       name: map['name'] != null ? map['name'] as String : null,
       email: map['email'] as String,
-      password: map['password'] as String,
+      password: map['password'] != null ? map['password'] as String : null,
     );
   }
 

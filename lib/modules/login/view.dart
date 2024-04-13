@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
+import 'package:smart_urban_planner/modules/login/controller.dart';
+import 'package:smart_urban_planner/routes/route_names.dart';
 import 'package:smart_urban_planner/widgets/form_input.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final _controller = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Form(
-            key: formKey,
+            key: _controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -41,7 +40,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
-                  controller: emailController,
+                  controller: _controller.emailController,
                   hintText: 'Enter your email address',
                   isPassword: false,
                   validator: (value) {
@@ -58,7 +57,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
-                  controller: passwordController,
+                  controller: _controller.passwordController,
                   hintText: 'Enter your password',
                   isPassword: true,
                   validator: (value) {
@@ -70,18 +69,19 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 42),
                 ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.snackbar("yole", "yole");
-                    }
-                  },
+                  onPressed: () => _controller.submit(),
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
                         const Size(double.infinity, 48)),
                     backgroundColor:
                         MaterialStateProperty.all(Styles.primaryColor),
                   ),
-                  child: const Text('Sign In'),
+                  child: Obx(
+                    () => _controller.isLoading.value
+                        ? CircularProgressIndicator(
+                            color: Styles.secondaryBackgroundColor)
+                        : const Text('Sign In'),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +89,7 @@ class LoginView extends StatelessWidget {
                     const Text("Don't have an account?"),
                     TextButton(
                       onPressed: () {
-                        Get.offAllNamed('/register');
+                        Get.offAllNamed(RouteNames.register);
                       },
                       child: Text(
                         'Sign up',

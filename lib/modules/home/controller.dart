@@ -21,7 +21,7 @@ class HomeController extends GetxController {
       const FeedView(),
       Container(),
       const InboxView(),
-      const ProfileView(),
+      ProfileView(),
     ]);
   }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
-import 'package:smart_urban_planner/data/models/user.dart';
 import 'package:smart_urban_planner/modules/register/controller.dart';
+import 'package:smart_urban_planner/routes/route_names.dart';
 import 'package:smart_urban_planner/widgets/form_input.dart';
 
 class RegisterView extends StatelessWidget {
@@ -86,30 +86,19 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 42),
                 ElevatedButton(
-                  onPressed: () async {
-                    if (_controller.formKey.currentState!.validate()) {
-                      try {
-                        await _controller.authRepository.register(
-                          User(
-                            email: _controller.emailController.text,
-                            password: _controller.passwordController.text,
-                            name: _controller.nameController.text,
-                          ),
-                        );
-                        Get.snackbar("Success", "Account created successfully");
-                        Get.offAllNamed('/login');
-                      } catch (e) {
-                        Get.snackbar("Error", e.toString());
-                      }
-                    }
-                  },
+                  onPressed: () => _controller.submit(),
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
                         const Size(double.infinity, 48)),
                     backgroundColor:
                         MaterialStateProperty.all(Styles.primaryColor),
                   ),
-                  child: const Text('Sign Up'),
+                  child: Obx(
+                    () => _controller.isLoading.value
+                        ? CircularProgressIndicator(
+                            color: Styles.secondaryBackgroundColor)
+                        : const Text('Sign Up'),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +106,7 @@ class RegisterView extends StatelessWidget {
                     const Text("Already have an account?"),
                     TextButton(
                       onPressed: () {
-                        Get.offAllNamed('/login');
+                        Get.offAllNamed(RouteNames.login);
                       },
                       child: Text(
                         'Sign Up',

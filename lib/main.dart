@@ -5,10 +5,14 @@ import 'package:smart_urban_planner/data/repositories/auth_repository.dart';
 import 'package:smart_urban_planner/data/repositories/report_repository.dart';
 import 'package:smart_urban_planner/routes/route.dart';
 import 'package:smart_urban_planner/routes/route_names.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:smart_urban_planner/services/auth_service.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   Get.put(AuthRepository());
   Get.put(ReportRepository());
+  Get.put(AuthService());
   runApp(const MyApp());
 }
 
