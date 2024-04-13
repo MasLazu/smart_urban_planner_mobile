@@ -36,5 +36,6 @@ class AuthService {
   Future<void> logout() async {
     _box.remove(StorageKeys.token);
     _box.remove(StorageKeys.user);
+    Get.offAllNamed('${RouteNames.home}?page=4');
   }
 }

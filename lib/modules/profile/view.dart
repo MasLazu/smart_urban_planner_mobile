@@ -11,46 +11,42 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(
-        () => Center(
-          child: _controller.user.value == null
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Login to see your profile',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 12),
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.offAllNamed(RouteNames.login);
-                      },
-                      child: const Text('Login'),
-                    )
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Profile',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                    ),
-                    Text('Name: ${_controller.user.value!.name}'),
-                    Text('Email: ${_controller.user.value!.email}'),
-                    const SizedBox(height: 12),
-                    ElevatedButton(
-                      onPressed: () {
-                        _controller.logout();
-                      },
-                      child: const Text('Logout'),
-                    )
-                  ],
-                ),
-        ),
+      body: Center(
+        child: _controller.user == null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Login to see your profile',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.offAllNamed(RouteNames.login);
+                    },
+                    child: const Text('Login'),
+                  )
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Profile',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  Text('Name: ${_controller.user.name}'),
+                  Text('Email: ${_controller.user.email}'),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () {
+                      _controller.logout();
+                    },
+                    child: const Text('Logout'),
+                  )
+                ],
+              ),
       ),
     );
   }

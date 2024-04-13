@@ -13,6 +13,7 @@ final route = [
     name: RouteNames.home,
     page: () => HomeView(),
     binding: HomeBinding(),
+    transition: Transition.noTransition,
   ),
   GetPage(
     name: '${RouteNames.report}/:id',

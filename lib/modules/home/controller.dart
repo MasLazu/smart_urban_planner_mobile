@@ -11,7 +11,7 @@ import 'package:smart_urban_planner/modules/inbox/view.dart';
 import 'package:smart_urban_planner/modules/profile/view.dart';
 
 class HomeController extends GetxController {
-  final RxInt selectedIndex = 0.obs;
+  late RxInt selectedIndex;
 
   final List<Widget> _tabContents = [];
 
@@ -20,9 +20,10 @@ class HomeController extends GetxController {
       ExploreView(),
       const FeedView(),
       Container(),
-      const InboxView(),
+      InboxView(),
       ProfileView(),
     ]);
+    selectedIndex = RxInt(int.parse(Get.parameters['page'] ?? '0'));
   }
 
   get tabContent => _tabContents[selectedIndex.value];
