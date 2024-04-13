@@ -38,7 +38,7 @@ class ReportCard extends StatelessWidget {
                 children: [
                   Text(report.address),
                   Text(
-                    '${report.createdAt.day.toString().padLeft(2, '0')}/${report.createdAt.month.toString().padLeft(2, '0')}/${report.createdAt.year.toString()}',
+                    '${report.createdAt!.day.toString().padLeft(2, '0')}/${report.createdAt!.month.toString().padLeft(2, '0')}/${report.createdAt!.year.toString()}',
                   ),
                 ],
               ),

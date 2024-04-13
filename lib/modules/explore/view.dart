@@ -50,7 +50,7 @@ class ExploreView extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
-                            selected.image,
+                            selected.image!,
                             fit: BoxFit.cover,
                           ),
                         ),

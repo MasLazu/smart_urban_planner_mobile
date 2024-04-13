@@ -105,7 +105,7 @@ class DetailReportView extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '${_controller.report.value!.createdAt.day.toString().padLeft(2, '0')}/${_controller.report.value!.createdAt.month.toString().padLeft(2, '0')}/${_controller.report.value!.createdAt.year.toString()}',
+                              '${_controller.report.value!.createdAt!.day.toString().padLeft(2, '0')}/${_controller.report.value!.createdAt!.month.toString().padLeft(2, '0')}/${_controller.report.value!.createdAt!.year.toString()}',
                             ),
                           ],
                         ),
@@ -130,7 +130,7 @@ class DetailReportView extends StatelessWidget {
                               markers: {
                                 Marker(
                                   markerId:
-                                      MarkerId(_controller.report.value!.id),
+                                      MarkerId(_controller.report.value!.id!),
                                   position: LatLng(
                                       _controller.report.value!.latitude,
                                       _controller.report.value!.longitude),

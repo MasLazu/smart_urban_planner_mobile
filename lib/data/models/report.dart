@@ -1,24 +1,24 @@
 import 'dart:convert';
 
 class Report {
-  final String id;
+  final String? id;
   final String title;
   final String description;
-  final String image;
-  final DateTime createdAt;
+  final String? image;
+  final DateTime? createdAt;
   final String address;
-  final int popularity;
+  final int? popularity;
   final double latitude;
   double longitude;
 
   Report({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
-    required this.image,
-    required this.createdAt,
+    this.image,
+    this.createdAt,
     required this.address,
-    required this.popularity,
+    this.popularity,
     required this.latitude,
     required this.longitude,
   });
@@ -53,7 +53,7 @@ class Report {
       'title': title,
       'description': description,
       'image': image,
-      'createdAt': createdAt.millisecondsSinceEpoch,
+      'created_at': createdAt.toString(),
       'address': address,
       'popularity': popularity,
       'latitude': latitude,

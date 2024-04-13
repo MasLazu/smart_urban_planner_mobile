@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:smart_urban_planner/core/storage_keys.dart';
@@ -7,20 +7,20 @@ import 'package:smart_urban_planner/core/storage_keys.dart';
 class Repository extends GetConnect {
   Repository(String domain) {
     httpClient.baseUrl = domain;
-    httpClient.addRequestModifier<dynamic>((request) async {
-      String body = '';
-      request.bodyBytes.transform(utf8.decoder).listen((String data) {
-        body += data;
-      });
+    // httpClient.addRequestModifier<dynamic>((request) async {
+    //   String body = '';
+    //   request.bodyBytes.transform(utf8.decoder).listen((String data) {
+    //     body += data;
+    //   });
 
-      await Future.delayed(const Duration(seconds: 2));
-      print('URL: ${request.url}');
-      print('Method: ${request.method}');
-      print('Headers: ${request.headers}');
-      print('Body: $body');
+    //   await Future.delayed(const Duration(seconds: 2));
+    //   print('URL: ${request.url}');
+    //   print('Method: ${request.method}');
+    //   print('Headers: ${request.headers}');
+    //   print('Body: $body');
 
-      return request;
-    });
+    //   return request;
+    // });
   }
 
   String get token => GetStorage().read(StorageKeys.token) ?? '';

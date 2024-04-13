@@ -56,7 +56,7 @@ class CreateReportView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
-                  controller: _controller.titleController,
+                  controller: _controller.addressController,
                   hintText: 'Enter adress report here',
                   isPassword: false,
                   validator: (value) {
@@ -73,7 +73,7 @@ class CreateReportView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 FormInput(
-                  controller: _controller.titleController,
+                  controller: _controller.descriptionController,
                   hintText: 'Enter description report here',
                   maxLines: 5,
                   isPassword: false,
@@ -86,18 +86,20 @@ class CreateReportView extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {
-                    if (_controller.formKey.currentState!.validate()) {
-                      Get.snackbar("yole", "yole");
-                    }
-                  },
+                  onPressed: _controller.submit,
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
                         const Size(double.infinity, 48)),
                     backgroundColor:
                         MaterialStateProperty.all(Styles.primaryColor),
                   ),
-                  child: const Text('Create Report'),
+                  child: Obx(
+                    () => _controller.isLoading.value
+                        ? CircularProgressIndicator(
+                            color: Styles.secondaryBackgroundColor,
+                          )
+                        : const Text('Create Report'),
+                  ),
                 )
               ],
             ),

@@ -14,7 +14,7 @@ class ExploreController extends GetxController {
   ExploreController() {
     markers = reports
         .map((e) => Marker(
-              markerId: MarkerId(e.id),
+              markerId: MarkerId(e.id!),
               position: LatLng(e.latitude, e.longitude),
               infoWindow: InfoWindow(title: e.title),
               onTap: () {
