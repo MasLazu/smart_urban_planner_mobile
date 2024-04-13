@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:smart_urban_planner/modules/detail_report/binding.dart';
 import 'package:smart_urban_planner/modules/detail_report/view.dart';
 import 'package:smart_urban_planner/modules/home/binding.dart';
 import 'package:smart_urban_planner/modules/home/view.dart';
@@ -18,6 +19,7 @@ final route = [
   GetPage(
     name: '${RouteNames.report}/:id',
     page: () => DetailReportView(),
+    binding: DetailReportBinding(),
     transition: Transition.cupertino,
   ),
   GetPage(

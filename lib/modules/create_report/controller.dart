@@ -7,6 +7,7 @@ class CreateReportController extends GetxController {
   final File image;
 
   final _formKey = GlobalKey<FormState>();
+  final titleController = TextEditingController();
 
   CreateReportController({required this.image});
 

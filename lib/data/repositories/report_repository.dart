@@ -9,4 +9,13 @@ class ReportRepository extends Repository {
     final res = await get('');
     return List<Report>.from(res.body.map((x) => Report.fromMap(x)));
   }
+
+  Future<Report> getByID(String id) async {
+    final res = await get('/$id');
+    return Report.fromMap(res.body);
+  }
+
+  Future<void> create(Report report) async {
+    await post('', report.toMap());
+  }
 }

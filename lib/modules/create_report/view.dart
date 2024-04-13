@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
 import 'package:smart_urban_planner/modules/create_report/controller.dart';
+import 'package:smart_urban_planner/widgets/form_input.dart';
 
 class CreateReportView extends StatelessWidget {
   CreateReportView({super.key});
@@ -21,6 +22,7 @@ class CreateReportView extends StatelessWidget {
           child: Form(
             key: _controller.formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 200,
@@ -31,73 +33,58 @@ class CreateReportView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                Text(
+                  'Title',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                FormInput(
+                  controller: _controller.titleController,
+                  hintText: 'Enter title report here',
+                  isPassword: false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Title is required';
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    labelText: 'Title',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    labelStyle: Theme.of(context).textTheme.titleLarge,
-                    border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.red, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
+                Text(
+                  'Address',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                FormInput(
+                  controller: _controller.titleController,
+                  hintText: 'Enter adress report here',
+                  isPassword: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Address is required';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Description',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                FormInput(
+                  controller: _controller.titleController,
+                  hintText: 'Enter description report here',
+                  maxLines: 5,
+                  isPassword: false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Description is required';
                     }
                     return null;
                   },
-                  maxLines: 6,
-                  decoration: InputDecoration(
-                    labelText: 'Description',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    labelStyle: Theme.of(context).textTheme.titleLarge,
-                    border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Styles.primaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.red, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
                     if (_controller.formKey.currentState!.validate()) {

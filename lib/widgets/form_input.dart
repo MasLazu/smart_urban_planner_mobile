@@ -7,6 +7,7 @@ class FormInput extends TextFormField {
     required bool isPassword,
     required TextEditingController controller,
     required super.validator,
+    super.maxLines = 1,
   }) : super(
           obscureText: isPassword,
           controller: controller,
@@ -44,44 +45,3 @@ class FormInput extends TextFormField {
           ),
         );
 }
-// TextFormField(
-//                   validator: (value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Password is required';
-//                     }
-//                     return null;
-//                   },
-//                   obscureText: true,
-//                   decoration: InputDecoration(
-//                     labelText: 'Enter your password',
-//                     floatingLabelBehavior: FloatingLabelBehavior.never,
-//                     errorBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(
-//                         color: Colors.red.shade300,
-//                         width: 2,
-//                       ),
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     focusedErrorBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(
-//                         color: Colors.red.shade300,
-//                         width: 2,
-//                       ),
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     enabledBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(
-//                         color: Colors.grey.shade300,
-//                         width: 2,
-//                       ),
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                       borderSide: BorderSide(
-//                         color: Styles.primaryColor,
-//                         width: 2,
-//                       ),
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                   ),
-//                 ),

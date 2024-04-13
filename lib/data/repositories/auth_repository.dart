@@ -7,20 +7,13 @@ class AuthRepository extends Repository {
   AuthRepository() : super('$backendUrl/auth');
 
   Future<String> login(User user) async {
-    Response res = await post('/login', {
-      'email': user.email,
-      'password': user.password,
-    });
+    Response res = await post('/login', user.toMap());
 
     return res.body['token'];
   }
 
   Future<void> register(User user) async {
-    await post('/register', {
-      'name': user.name,
-      'email': user.email,
-      'password': user.password,
-    });
+    await post('/register', user.toMap());
   }
 
   Future<User> me() async {

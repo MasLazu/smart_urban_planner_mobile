@@ -29,7 +29,8 @@ class Repository extends GetConnect {
     if (res.statusCode == null ||
         res.statusCode! < 200 ||
         res.statusCode! >= 300) {
-      throw Exception(res.body['message']);
+      throw Exception(
+          res.body != null ? res.body['message'] : 'Something went wrong');
     }
   }
 
