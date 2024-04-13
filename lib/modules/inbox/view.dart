@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:smart_urban_planner/routes/route_names.dart';
 
 class InboxView extends StatelessWidget {
   const InboxView({super.key});
@@ -15,7 +17,12 @@ class InboxView extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
-            ElevatedButton(onPressed: () {}, child: const Text('Login'))
+            ElevatedButton(
+              onPressed: () {
+                Get.offAllNamed(RouteNames.login);
+              },
+              child: const Text('Login'),
+            )
           ],
         ),
       ),
