@@ -25,12 +25,6 @@ class AuthRepository extends Repository {
 
   Future<User> me() async {
     Response res = await get('/me');
-
-    print(res.body);
     return User.fromMap(res.body);
-  }
-
-  Future<void> logout() async {
-    await post('/logout', {});
   }
 }

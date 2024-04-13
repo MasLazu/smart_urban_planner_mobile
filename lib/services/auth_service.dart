@@ -34,9 +34,7 @@ class AuthService {
   }
 
   Future<void> logout() async {
-    await _authRepository.logout();
     _box.remove(StorageKeys.token);
     _box.remove(StorageKeys.user);
-    Get.offAllNamed(RouteNames.login);
   }
 }
