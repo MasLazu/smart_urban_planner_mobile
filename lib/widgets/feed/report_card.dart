@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:smart_urban_planner/core/constant.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
 import 'package:smart_urban_planner/data/models/report.dart';
 
@@ -35,7 +36,7 @@ class ReportCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(report.location),
+                  Text(report.address),
                   Text(
                     '${report.createdAt.day.toString().padLeft(2, '0')}/${report.createdAt.month.toString().padLeft(2, '0')}/${report.createdAt.year.toString()}',
                   ),
@@ -45,7 +46,7 @@ class ReportCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  report.image,
+                  '$backendUrl${report.image}',
                   height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,

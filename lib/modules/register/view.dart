@@ -110,7 +110,7 @@ class RegisterView extends StatelessWidget {
                           Get.offAllNamed(RouteNames.login);
                         },
                         child: Text(
-                          'Sign Up',
+                          'Sign In',
                           style: TextStyle(
                             color: Styles.primaryColor,
                             fontWeight: FontWeight.bold,

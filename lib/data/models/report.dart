@@ -6,7 +6,7 @@ class Report {
   final String description;
   final String image;
   final DateTime createdAt;
-  final String location;
+  final String address;
   final int popularity;
   final double latitude;
   double longitude;
@@ -17,7 +17,7 @@ class Report {
     required this.description,
     required this.image,
     required this.createdAt,
-    required this.location,
+    required this.address,
     required this.popularity,
     required this.latitude,
     required this.longitude,
@@ -29,7 +29,7 @@ class Report {
     String? description,
     String? image,
     DateTime? createdAt,
-    String? location,
+    String? address,
     int? popularity,
     double? latitude,
     double? longitude,
@@ -40,7 +40,7 @@ class Report {
       description: description ?? this.description,
       image: image ?? this.image,
       createdAt: createdAt ?? this.createdAt,
-      location: location ?? this.location,
+      address: address ?? this.address,
       popularity: popularity ?? this.popularity,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
@@ -54,7 +54,7 @@ class Report {
       'description': description,
       'image': image,
       'createdAt': createdAt.millisecondsSinceEpoch,
-      'location': location,
+      'address': address,
       'popularity': popularity,
       'latitude': latitude,
       'longitude': longitude,
@@ -67,8 +67,8 @@ class Report {
       title: map['title'] as String,
       description: map['description'] as String,
       image: map['image'] as String,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      location: map['location'] as String,
+      createdAt: DateTime.parse(map['created_at'] as String),
+      address: map['address'] as String,
       popularity: map['popularity'] as int,
       latitude: map['latitude'] as double,
       longitude: map['longitude'] as double,
@@ -82,7 +82,7 @@ class Report {
 
   @override
   String toString() {
-    return 'Report(id: $id, title: $title, description: $description, image: $image, createdAt: $createdAt, location: $location, popularity: $popularity, latitude: $latitude, longitude: $longitude)';
+    return 'Report(id: $id, title: $title, description: $description, image: $image, created_at: $createdAt, address: $address, popularity: $popularity, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -94,7 +94,7 @@ class Report {
         other.description == description &&
         other.image == image &&
         other.createdAt == createdAt &&
-        other.location == location &&
+        other.address == address &&
         other.popularity == popularity &&
         other.latitude == latitude &&
         other.longitude == longitude;
@@ -107,7 +107,7 @@ class Report {
         description.hashCode ^
         image.hashCode ^
         createdAt.hashCode ^
-        location.hashCode ^
+        address.hashCode ^
         popularity.hashCode ^
         latitude.hashCode ^
         longitude.hashCode;

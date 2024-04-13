@@ -90,7 +90,7 @@ class DetailReportView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    report.location,
+                    report.address,
                     style: TextStyle(
                       fontSize: 16,
                       color: Styles.foregroundColor,

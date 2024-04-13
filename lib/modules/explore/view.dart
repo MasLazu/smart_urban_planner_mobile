@@ -89,7 +89,7 @@ class ExploreView extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              selected.location,
+                              selected.address,
                               style: const TextStyle(
                                   fontSize: 14,
                                   overflow: TextOverflow.ellipsis),
