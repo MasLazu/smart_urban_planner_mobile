@@ -20,14 +20,19 @@ class FeedView extends StatelessWidget {
         child: Obx(
           () => _controller.isLoading.value
               ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ListView.builder(
-                    itemCount: _controller.reports.length,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    itemBuilder: (context, index) {
-                      return ReportCard(report: _controller.reports[index]);
-                    },
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    await _controller.refetchReports();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: ListView.builder(
+                      itemCount: _controller.reports.length,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      itemBuilder: (context, index) {
+                        return ReportCard(report: _controller.reports[index]);
+                      },
+                    ),
                   ),
                 ),
         ),

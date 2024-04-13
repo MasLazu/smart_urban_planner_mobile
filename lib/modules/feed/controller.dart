@@ -8,7 +8,12 @@ class FeedController extends GetxController {
   final reports = <Report>[].obs;
   final isLoading = true.obs;
 
-  void fetchReports() async {
+  Future<void> refetchReports() async {
+    reports.clear();
+    await fetchReports();
+  }
+
+  Future<void> fetchReports() async {
     isLoading(true);
     final res = await reportRepository.getAll();
     reports.assignAll(res);
