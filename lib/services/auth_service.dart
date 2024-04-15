@@ -9,6 +9,22 @@ class AuthService {
   final _box = GetStorage();
   final _authRepository = Get.find<AuthRepository>();
 
+  AuthService() {
+    authCheck();
+  }
+
+  Future<void> authCheck() async {
+    final userJson = _box.read(StorageKeys.user);
+    if (userJson != null) {
+      try {
+        await _authRepository.me();
+      } catch (e) {
+        _box.remove(StorageKeys.token);
+        _box.remove(StorageKeys.user);
+      }
+    }
+  }
+
   User? get user {
     final userJson = _box.read(StorageKeys.user);
     return userJson != null ? User.fromJson(userJson) : null;
