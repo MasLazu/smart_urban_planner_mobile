@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:smart_urban_planner/core/constant.dart';
 import 'package:smart_urban_planner/core/theme/styles.dart';
 import 'package:smart_urban_planner/data/models/report.dart';
 import 'package:smart_urban_planner/modules/explore/controller.dart';
@@ -50,7 +51,7 @@ class ExploreView extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
-                            selected.image!,
+                            '$backendUrl${selected.image!}',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -120,30 +121,27 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cameraPosition = _controller.getinitialCameraPosition();
-    return Stack(
-      children: [
-        FutureBuilder(
-            future: cameraPosition,
-            builder: (contenxt, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done &&
-                  snapshot.hasData) {
-                return GoogleMap(
-                  zoomControlsEnabled: false,
-                  mapType: MapType.normal,
-                  initialCameraPosition: CameraPosition(
-                    target: snapshot.data!,
-                    zoom: 16,
+    return Obx(() => Stack(
+          children: [
+            _controller.isLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : GoogleMap(
+                    zoomControlsEnabled: false,
+                    mapType: MapType.normal,
+                    initialCameraPosition: CameraPosition(
+                      target: _controller.currentPosition.value != null
+                          ? LatLng(
+                              _controller.currentPosition.value!.latitude,
+                              _controller.currentPosition.value!.longitude,
+                            )
+                          : const LatLng(0, 0),
+                      zoom: 16,
+                    ),
+                    onMapCreated: _controller.onMapCreated,
+                    markers: _controller.markers.value,
                   ),
-                  onMapCreated: _controller.onMapCreated,
-                  markers: _controller.markers,
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            }),
-        Obx(() => _buildMarkerCard()),
-      ],
-    );
+            _buildMarkerCard(),
+          ],
+        ));
   }
 }
