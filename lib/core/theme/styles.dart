@@ -8,4 +8,6 @@ class Styles {
   static Color mutedForegroundColor = const Color(0xFF949494);
   static Color backgroundColor = const Color(0xFFF8F8F8);
   static Color warningColor = const Color(0xFFFFAB1E);
+  static Color errorColor = const Color(0xFFE74C3C);
+  static Color successColor = const Color(0xFF2ECC71);
 }

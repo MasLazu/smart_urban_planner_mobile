@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:smart_urban_planner/core/storage_keys.dart';
 import 'package:smart_urban_planner/data/models/user.dart';
 import 'package:smart_urban_planner/data/repositories/auth_repository.dart';
+import 'package:smart_urban_planner/helper/snackbar.dart';
 import 'package:smart_urban_planner/routes/route_names.dart';
 
 class AuthService {
@@ -41,7 +42,7 @@ class AuthService {
     _box.write(StorageKeys.token, token);
     _user = await _authRepository.me();
     Get.offAllNamed(RouteNames.home);
-    Get.snackbar("Success", "User logged in successfully!");
+    Snackbar.success("You are logged in!");
   }
 
   Future<void> register(User user) async {

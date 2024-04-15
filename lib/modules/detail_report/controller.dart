@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/data/models/report.dart';
 import 'package:smart_urban_planner/data/repositories/report_repository.dart';
+import 'package:smart_urban_planner/helper/snackbar.dart';
 
 class DetailReportController extends GetxController {
   final isLoading = true.obs;
@@ -19,7 +20,7 @@ class DetailReportController extends GetxController {
       report.value =
           await _reportRepository.getByID(Get.parameters['id'] ?? '');
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      Snackbar.error(e.toString());
       Get.back();
     }
 

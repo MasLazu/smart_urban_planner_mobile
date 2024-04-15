@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_urban_planner/data/repositories/report_repository.dart';
+import 'package:smart_urban_planner/helper/snackbar.dart';
 
 class ExploreController extends GetxController {
   final Completer<GoogleMapController> googleController = Completer();
@@ -23,21 +24,25 @@ class ExploreController extends GetxController {
   void onInit() async {
     isLoading.value = true;
     super.onInit();
-    await Geolocator.requestPermission();
-    await getinitialCameraPosition();
-    final reports = await _reportRepository.getAll();
-    markers.value = reports
-        .map((e) => Marker(
-              markerId: MarkerId(e.id!),
-              position: LatLng(e.latitude, e.longitude),
-              infoWindow: InfoWindow(title: e.title),
-              onTap: () {
-                selected.value = e;
-              },
-              draggable: false,
-            ))
-        .toSet();
-    isLoading.value = false;
+    try {
+      await Geolocator.requestPermission();
+      await getinitialCameraPosition();
+      final reports = await _reportRepository.getAll();
+      markers.value = reports
+          .map((e) => Marker(
+                markerId: MarkerId(e.id!),
+                position: LatLng(e.latitude, e.longitude),
+                infoWindow: InfoWindow(title: e.title),
+                onTap: () {
+                  selected.value = e;
+                },
+                draggable: false,
+              ))
+          .toSet();
+      isLoading.value = false;
+    } catch (e) {
+      Snackbar.error(e.toString());
+    }
   }
 
   Future<void> getinitialCameraPosition() async {

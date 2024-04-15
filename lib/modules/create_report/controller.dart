@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_urban_planner/data/models/report.dart';
 import 'package:smart_urban_planner/data/repositories/report_repository.dart';
+import 'package:smart_urban_planner/helper/snackbar.dart';
 
 class CreateReportController extends GetxController {
   final File image;
@@ -46,12 +47,11 @@ class CreateReportController extends GetxController {
             ),
             image);
         Get.back();
-        Get.snackbar("Success", "Report created successfully");
+        Snackbar.success("Report created successfully");
       } catch (e) {
-        Get.snackbar('Error', e.toString());
-      } finally {
-        isLoading.value = false;
+        Snackbar.error(e.toString());
       }
+      isLoading.value = false;
     }
   }
 }

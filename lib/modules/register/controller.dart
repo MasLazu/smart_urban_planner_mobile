@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_urban_planner/data/models/user.dart';
+import 'package:smart_urban_planner/helper/snackbar.dart';
 import 'package:smart_urban_planner/services/auth_service.dart';
 
 class RegisterController extends GetxController {
@@ -24,7 +25,7 @@ class RegisterController extends GetxController {
           name: nameController.text,
         ));
       } catch (e) {
-        Get.snackbar("Error", e.toString());
+        Snackbar.error(e.toString());
       }
       isLoading.value = false;
     }
