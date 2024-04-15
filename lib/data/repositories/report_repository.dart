@@ -9,7 +9,11 @@ class ReportRepository extends Repository {
 
   Future<List<Report>> getAll() async {
     final res = await get('');
-    return List<Report>.from(res.body.map((x) => Report.fromMap(x)));
+    try {
+      return List<Report>.from(res.body.map((x) => Report.fromMap(x)));
+    } catch (e) {
+      return [];
+    }
   }
 
   Future<Report> getByID(String id) async {
