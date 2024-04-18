@@ -36,7 +36,13 @@ class ReportCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(report.address),
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      report.address,
+                      style: const TextStyle(overflow: TextOverflow.ellipsis),
+                    ),
+                  ),
                   Text(
                     '${report.createdAt!.day.toString().padLeft(2, '0')}/${report.createdAt!.month.toString().padLeft(2, '0')}/${report.createdAt!.year.toString()}',
                   ),
