@@ -24,9 +24,9 @@ class ExploreController extends GetxController {
   void onInit() async {
     isLoading.value = true;
     super.onInit();
-    await fetchReports();
     await Geolocator.requestPermission();
     await getinitialCameraPosition();
+    await fetchReports();
     isLoading.value = false;
   }
 
