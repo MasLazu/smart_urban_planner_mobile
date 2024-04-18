@@ -49,7 +49,11 @@ class HomeController extends GetxController {
             await ImagePicker().pickImage(source: ImageSource.camera);
         if (returnedImage == null) return;
         Get.to(() => CreateReportView(),
-            binding: CreateReportBinding(image: File(returnedImage.path)));
+                binding: CreateReportBinding(image: File(returnedImage.path)))!
+            .then((v) async {
+          ExploreView exploreView = _tabContents[0] as ExploreView;
+          await exploreView.refetchReports();
+        });
       }
     } else {
       selectedIndex.value = index;

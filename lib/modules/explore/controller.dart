@@ -24,9 +24,15 @@ class ExploreController extends GetxController {
   void onInit() async {
     isLoading.value = true;
     super.onInit();
+    await fetchReports();
+    await Geolocator.requestPermission();
+    await getinitialCameraPosition();
+    isLoading.value = false;
+  }
+
+  Future<void> fetchReports() async {
+    isLoading.value = true;
     try {
-      await Geolocator.requestPermission();
-      await getinitialCameraPosition();
       final reports = await _reportRepository.getAll();
       markers.value = reports
           .map((e) => Marker(
@@ -39,10 +45,10 @@ class ExploreController extends GetxController {
                 draggable: false,
               ))
           .toSet();
-      isLoading.value = false;
     } catch (e) {
       Snackbar.error(e.toString());
     }
+    isLoading.value = false;
   }
 
   Future<void> getinitialCameraPosition() async {

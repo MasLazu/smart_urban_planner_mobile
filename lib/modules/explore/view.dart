@@ -12,6 +12,10 @@ class ExploreView extends StatelessWidget {
 
   final _controller = Get.find<ExploreController>();
 
+  Future<void> refetchReports() async {
+    await _controller.fetchReports();
+  }
+
   Widget _buildMarkerCard() {
     final selected = _controller.selected.value;
     if (selected is Report) {
