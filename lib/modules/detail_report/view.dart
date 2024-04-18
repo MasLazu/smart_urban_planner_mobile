@@ -96,12 +96,16 @@ class DetailReportView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              _controller.report.value!.address,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Styles.foregroundColor,
-                                fontWeight: FontWeight.w500,
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                _controller.report.value!.address,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Styles.foregroundColor,
+                                  fontWeight: FontWeight.w500,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                             Text(
