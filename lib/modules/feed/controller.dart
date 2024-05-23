@@ -22,6 +22,7 @@ class FeedController extends GetxController {
       isLoading(false);
     } catch (e) {
       Snackbar.error(e.toString());
+      fetchReports();
     }
   }
 

@@ -47,6 +47,7 @@ class ExploreController extends GetxController {
           .toSet();
     } catch (e) {
       Snackbar.error(e.toString());
+      fetchReports();
     }
     isLoading.value = false;
   }
